@@ -1,0 +1,70 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+     
+    <link rel="stylesheet" href="styles.css"> 
+ 
+    <title>Gestión Personas</title> 
+     
+</head> 
+<body>
+    <div class="container">
+        <h1>Gestión Personas</h1>
+            <div class="psn_table_div">
+                <table id="psn_table">
+                    <tr>
+                        <td>Tipo doc.</td>
+                        <td>Núm. doc.</td>
+                        <td>Nombres</td>
+                        <td>Apellidos</td>
+                        <td>F. Nacim.</td>
+                        <td>Género</td>
+                        <td>Vacuna</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="psn_btns_div" style="visibility: hidden">
+                <button id="psn_btn_guardar">Guardar</button>
+                <button id="psn_btn_eliminar">Eliminar</button>
+                <button id="psn_btn_buscar">Buscar</button>
+                <button id="psn_btn_limpiar">Limpiar</button>
+            </div>
+            <div class="psn_form_div">
+                <form action="validador_example" method="post">
+                    <p>Tipo de documento: <select name="psn_form_id_type" id="psn_form_id_type">
+                        <option>CC</option>
+                        <option>CE</option>
+                        <option>TI</option>
+                        <option>PA</option>
+                    </select></p>
+                    <p>Número de documento: <input type="number" id="psn_form_id_number" name="psn_form_id_number"</p>
+                    <p>Nombres: <input type="text" id="psn_form_name" name="psn_form_name" placeholder="Nombres"></p>
+                    <p>Apellidos: <input type="text" id="psn_form_surname" name="psn_form_surname" placeholder="Apellidos"></p>
+                    <p>Fecha de nacimiento: <input type="date" id="psn_form_birthdate" name="psn_form_birthdate"></p>
+                    <p>Género: <select name="psn_form_gender" id="psn_form_gender">
+                        <option>M</option>
+                        <option>F</option>
+                    </select></p>
+                    <p>Vacuna: <select name="psn_form_vaccine" id="psn_form_vaccine">
+                        <option>Pfizer/BioNTech</option>
+                        <option>Moderna</option>
+                        <option>Janssen</option>
+                        <option>Sinovac</option>
+                        <option>Coronavac</option>
+                        <option>AstraZeneca</option>
+                        <option>Otra</option>
+                        <option selected>Ninguna</option>
+                    </select></p>
+                    <p>
+                        <input type="submit" value="Guardar">
+                        <input type="submit" value="Eliminar">
+                        <input type="submit" value="Buscar">
+                        <input type="reset" value="Limpiar">
+                    </p>
+                </form>
+            </div>
+    </div>
+</body>
