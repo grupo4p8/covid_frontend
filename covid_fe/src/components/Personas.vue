@@ -9,14 +9,16 @@
         <div class="form-row">
           <div class="col">
             <label for="text">Tipo de documento </label>
-            <select class="form-control" id="docum_tipo" v-model="docum_tipo">
-                <option>CC</option>
+            <select class="form-control" id="docum_tipo_id" v-model="docum_tipo_id">
+              <option disabled value="">Tipo de documento</option>
+
+                <!-- <option>CC</option>
                 <option>CE</option>
                 <option>TI</option>
-                <option>PA</option>
-            <!-- <option v-for="documento in allTipodoc" :value="tipodoc.docum_tipo_id">{{
+                <option>PA</option> -->
+              <option v-for="documento in allTipodoc" :value="tipodoc.docum_tipo_id">{{
                 tipodoc.docum_tipo
-            }}</option> -->
+            }}</option>
             </select>
           </div>
           <div class="col">
@@ -58,66 +60,6 @@
           </div>
         </div>
       </form>
-
-
-
-
-
-            <!-- <div class="psn_table_div">
-
-                <table id="psn_table">
-                    <tr>
-                        <td>Tipo doc.</td>
-                        <td>Núm. doc.</td>
-                        <td>Nombres</td>
-                        <td>Apellidos</td>
-                        <td>F. Nacim.</td>
-                        <td>Género</td>
-                        <td>Vacuna</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="psn_btns_div" style="visibility: hidden">
-                <button id="psn_btn_guardar">Guardar</button>
-                <button id="psn_btn_eliminar">Eliminar</button>
-                <button id="psn_btn_buscar">Buscar</button>
-                <button id="psn_btn_limpiar">Limpiar</button>
-            </div>
-            <div class="psn_form_div">
-                <form action="validador_example" method="post">
-                    <p>Tipo de documento: <select name="psn_form_id_type" id="psn_form_id_type">
-                        <option>CC</option>
-                        <option>CE</option>
-                        <option>TI</option>
-                        <option>PA</option>
-                    </select>
-                    </p>
-                    <p>Número de documento: <input type="number" id="psn_form_id_number" name="psn_form_id_number"></p>
-                    <p>Nombres: <input type="text" id="psn_form_name" name="psn_form_name" placeholder="Nombres">
-                    Apellidos: <input type="text" id="psn_form_surname" name="psn_form_surname" placeholder="Apellidos"></p>
-                    <p>Fecha de nacimiento: <input type="date" id="psn_form_birthdate" name="psn_form_birthdate">
-                    Género: <select name="psn_form_gender" id="psn_form_gender">
-                        <option>M</option>
-                        <option>F</option>
-                    </select>
-                    Vacuna: <select name="psn_form_vaccine" id="psn_form_vaccine">
-                        <option>Pfizer/BioNTech</option>
-                        <option>Moderna</option>
-                        <option>Janssen</option>
-                        <option>Sinovac</option>
-                        <option>Coronavac</option>
-                        <option>AstraZeneca</option>
-                        <option>Otra</option>
-                        <option selected>Ninguna</option>
-                    </select></p>
-                    <p>
-                        <input type="submit" value="Guardar">
-                        <input type="submit" value="Eliminar">
-                        <input type="submit" value="Buscar">
-                        <input type="reset" value="Limpiar">
-                    </p>
-                </form>
-            </div> -->
 
 <br />
       <div class="main">
@@ -164,19 +106,80 @@ import axios from "axios";
 export default {
 name: "Personas",
 data: function() {
-    return {}
+    return {
+      allTipodoc:[],
+    }
 
     },
     created: function() {
-
+      this.getAllTipodoc();
     },
 methods: {
+    getAllTipodoc: async function() {
+      axios
+      
+      .get(`http://pasaporte-covid-be.herokuapp.com/tipodoc`, { headers: {} })
+
+      .then((result) => {
+          this.allTipodoc = result.data;
+        })
+        .catch(() => {
+          console.log("error en método getAllTipodoc");
+          console.log(result)
+        });
+    }
 
     }
 
 }
 </script>
 
+
+
 <style>
 
+body {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+.main,
+form {
+  width: 600px;
+}
+.main {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 3px 4px #0000000d;
+}
+.container-flex {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  flex-direction: column;
+  align-items: center;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 13px;
+}
+.title {
+  margin-bottom: unset;
+  font-size: 1.5rem;
+  color: #026466;
+}
+#options-table {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.table th,
+.table td {
+  border-top: unset;
+  text-align: center;
+  vertical-align: unset;
+}
+#whitespace {
+  height: 10%;
+}
 </style>

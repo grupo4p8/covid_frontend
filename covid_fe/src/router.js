@@ -4,7 +4,7 @@ import App from './App.vue'
 import Personas from './components/Personas.vue'
 import Permiso from './components/Permiso.vue'
 import Vacunaacep from './components/Vacunaacep.vue'
-import CrearInmueble from './components/CrearInmueble.vue'
+// import CrearInmueble from './components/CrearInmueble.vue'
  
 const routes = [{ 
     path: '/', 
@@ -26,11 +26,11 @@ const routes = [{
     name: 'Vacunaacep',
     component: Vacunaacep
 },
-{
-    path: '/crearinmueble',
-    name: 'CrearInmueble',
-    component: CrearInmueble
-}
+// {
+//     path: '/crearinmueble',
+//     name: 'CrearInmueble',
+//     component: CrearInmueble
+// }
 
 ] 
  

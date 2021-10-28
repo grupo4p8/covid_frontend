@@ -47,7 +47,7 @@ export default {
     return {
       id: "",
       id_arrendatario: "",
-      precio: 10000,
+      precio: "",
       habitaciones: "",
       tipo: "",
       disponible: false,
@@ -58,13 +58,16 @@ export default {
   created: function() {
     debugger;
     this.id_arrendatario = localStorage.getItem("userId");
-    this.getAllUsuarios();
+    this.username = this.$route.params.username;
+    let self = this;
+    this.allCategories = this.$route.params.allCategories;
+    (this.units_mesusre = ["Units", "Liters", "Grams"]), this.getAllUsuarios();
     this.getAllTipos();
   },
   methods: {
     getAllUsuarios: async function() {
       axios
-        .get(`http://127.0.0.1:8000/users/`, { headers: {} })
+        .get(`http://pasaporte-covid-be.herokuapp.com/tipodoc`, { headers: {} })
 
         .then((result) => {
           debugger;
@@ -90,7 +93,7 @@ export default {
     },
     getAllTipos: async function() {
       axios
-        .get(`http://127.0.0.1:8000/tipoInmuebles/`, { headers: {} })
+        .get(`http://pasaporte-covid-be.herokuapp.com/tipodoc`, { headers: {} })
 
         .then((result) => {
           this.allTipos = result.data;
@@ -153,44 +156,57 @@ export default {
 </script>
 
 <style>
-#Prodcuts {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+*{box-sizing:border-box;}
+
+form{
+	width:300px;
+	padding:16px;
+	border-radius:10px;
+	margin:auto;
+	background-color:#ccc;
 }
-#editar_producto {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+
+form label{
+	width:72px;
+	font-weight:bold;
+	display:inline-block;
 }
-#Prodcuts h2 {
-  font-size: 16 px;
-  color: #0a1016;
-  margin-top: 2px;
-  margin-bottom: 2px;
+
+form input[type="text"],
+form input[type="email"]{
+	width:180px;
+	padding:3px 10px;
+	border:1px solid #f6f6f6;
+	border-radius:3px;
+	background-color:#f6f6f6;
+	margin:8px 0;
+	display:inline-block;
 }
-#Prodcuts h1 {
-  font-size: 16 px;
-  color: #2e455e;
-  margin-top: 2px;
-  margin-bottom: 2px;
+
+form input[type="submit"]{
+	width:100%;
+	padding:8px 16px;
+	margin-top:32px;
+	border:1px solid #000;
+	border-radius:5px;
+	display:block;
+	color:#fff;
+	background-color:#000;
+} 
+
+form input[type="submit"]:hover{
+	cursor:pointer;
 }
-#Prodcuts span {
-  color: crimson;
-  font-weight: bold;
-}
-#Prodcuts label {
-  font-size: 25 px;
-  color: #0a1016;
-}
-#Prodcuts input {
-  color: #0a1016;
-  font-weight: bold;
+
+textarea{
+	width:100%;
+	height:100px;
+	border:1px solid #f6f6f6;
+	border-radius:3px;
+	background-color:#f6f6f6;			
+	margin:8px 0;
+	/*resize: vertical | horizontal | none | both*/
+	resize:none;
+	display:block;
 }
 </style>
